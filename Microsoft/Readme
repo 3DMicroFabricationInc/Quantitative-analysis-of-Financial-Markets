@@ -1,1 +1,14 @@
+Readme Notes
 
+In order to run nicrosoft_moving_average_crossover_point.py install latest Python.
+https://www.python.org/downloads/release/python-3144/
+Scroll down to Windows Download Pyhton Install Manager.
+
+After successful Python install type pip intall yfinance in cli to install yfinace API.
+In cli type pip install mathplotlib
+In cli type pip install numpy
+In cli type pip install pandas
+
+After the required modules are successfully installed type python microsoft_moving_average_crossover_poiint.py
+
+For any queries contact me @ theunislagrange@outlook.com
