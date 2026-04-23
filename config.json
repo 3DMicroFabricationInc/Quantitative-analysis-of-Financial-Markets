@@ -1,0 +1,46 @@
+{
+  "stocks": [
+    {
+      "company": "Microsoft",
+      "details": {
+        "name": "microsoft",
+        "code": "MSFT"
+      }
+    },
+    {
+      "company": "Apple",
+      "details": {
+        "name": "apple",
+        "code": "AAPL"
+      }
+    },
+    {
+      "company": "Nike",
+      "details": {
+        "name": "nike",
+        "code": "NKE"
+      }
+    },
+    {
+      "company": "Coca-Cola",
+      "details": {
+        "name": "coca-cola",
+        "code": "KO"
+      }
+    },
+    {
+      "company": "PepsiCo",
+      "details": {
+        "name": "pepsi",
+        "code": "PEP"
+      }
+    },
+    {
+      "company": "Pfizer",
+      "details": {
+        "name": "pfizer",
+        "code": "PFE"
+      }
+    }
+  ]
+}
