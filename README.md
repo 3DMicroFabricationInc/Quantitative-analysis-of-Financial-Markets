@@ -13,4 +13,4 @@ In order to get all the dependancies type "pip install yfinance mathplotlib nump
 
 (3) Renamed moving_average_crossover_point.py to market_trend.py to market_trend.py.
 
-(3) To do list: 
+(3) To do list: create a automatic expansion update (to add new companies to list without changing program logic)
