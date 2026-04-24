@@ -1,46 +1,158 @@
 {
-  "stocks": [
-    {
-      "company": "Microsoft",
-      "details": {
-        "name": "microsoft",
-        "code": "MSFT"
-      }
-    },
-    {
-      "company": "Apple",
-      "details": {
-        "name": "apple",
-        "code": "AAPL"
-      }
-    },
-    {
-      "company": "Nike",
-      "details": {
-        "name": "nike",
-        "code": "NKE"
-      }
-    },
-    {
-      "company": "Coca-Cola",
-      "details": {
-        "name": "coca-cola",
-        "code": "KO"
-      }
-    },
-    {
-      "company": "PepsiCo",
-      "details": {
-        "name": "pepsi",
-        "code": "PEP"
-      }
-    },
-    {
-      "company": "Pfizer",
-      "details": {
-        "name": "pfizer",
-        "code": "PFE"
-      }
-    }
-  ]
+    "stocks": [
+        {
+            "company": "Help",
+            "details": {
+                "name": "help",
+                "code": "Help"
+            }
+        },
+        {
+            "company": "Exit",
+            "details": {
+                "name": "exit",
+                "code": "Exit"
+            }
+        },
+        {
+            "company": "New_Company",
+            "details": {
+                "name": "new_company",
+                "code": "NEW"
+            }
+        },
+        {
+            "company": "Reload",
+            "details": {
+                "name": "reload",
+                "code": "RLD"
+            }
+        },
+        {
+            "company": "Tesla",
+            "details": {
+                "name": "tesla",
+                "code": "TSLA"
+            }
+        },
+        {
+            "company": "Microsoft",
+            "details": {
+                "name": "microsoft",
+                "code": "MSFT"
+            }
+        },
+        {
+            "company": "Apple",
+            "details": {
+                "name": "apple",
+                "code": "AAPL"
+            }
+        },
+        {
+            "company": "Nike",
+            "details": {
+                "name": "nike",
+                "code": "NKE"
+            }
+        },
+        {
+            "company": "Coca-Cola",
+            "details": {
+                "name": "coca-cola",
+                "code": "KO"
+            }
+        },
+        {
+            "company": "PepsiCo",
+            "details": {
+                "name": "pepsi",
+                "code": "PEP"
+            }
+        },
+        {
+            "company": "Pfizer",
+            "details": {
+                "name": "pfizer",
+                "code": "PFE"
+            }
+        },
+        {
+            "company": "Merck",
+            "details": {
+                "name": "merck",
+                "code": "MRK"
+            }
+        },
+        {
+            "company": "Proctor & Gamble",
+            "details": {
+                "name": "proctor-gamble",
+                "code": "PG"
+            }
+        },
+        {
+            "company": "Intel",
+            "details": {
+                "name": "intel",
+                "code": "INTC"
+            }
+        },
+        {
+            "company": "Advanced Micro Devices",
+            "details": {
+                "name": "advanced-micro-devices",
+                "code": "AMD"
+            }
+        },
+        {
+            "company": "NVidia",
+            "details": {
+                "name": "nvidia",
+                "code": "NVDA"
+            }
+        },
+        {
+            "company": "Palantir Technologies Inc.",
+            "details": {
+                "name": "palantir",
+                "code": "PLTR"
+            }
+        },
+        {
+            "company": "3M Company",
+            "details": {
+                "name": "3m",
+                "code": "MMM"
+            }
+        },
+        {
+            "company": "Exxon Mobile Corporation",
+            "details": {
+                "name": "exxon-mobil",
+                "code": "XOM"
+            }
+        },
+        {
+            "company": "Shell plc",
+            "details": {
+                "name": "shell",
+                "code": "SHEL"
+            }
+        },
+        {
+            "company": "BP p.l.c.",
+            "details": {
+                "name": "bp",
+                "code": "BP"
+            }
+        },
+        {
+            "company": "Chevron Corporation",
+            "details": {
+                "name": "chevron",
+                "code": "CVX"
+            }
+        }
+    ]
 }
