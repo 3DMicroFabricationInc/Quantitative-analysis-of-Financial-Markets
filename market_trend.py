@@ -1,3 +1,4 @@
+from logging import config
 import sys
 import json
 from matplotlib.ticker import MultipleLocator
@@ -6,10 +7,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from datetime import datetime
+from pathlib import Path
 
-#my_var = None
-
-def display_plot(df, stock_name, crossovers):
+def display_plot(df, stock_name, crossovers, directory_name, end_date):
     # Plot with crossover markers
     
     # figsize=(10, 6) means 10 inches wide and 6 inches tall.
@@ -26,7 +26,7 @@ def display_plot(df, stock_name, crossovers):
     plt.scatter(crossovers.index, crossovers['Close'], 
             color='black', marker='o', label='Crossovers (moving above/below MA20)')
 
-    plt.title(f"{stock_name} Stock: Close vs 20-day MA")
+    plt.title(f"{stock_name} Stock: Market Trend Analysis with Moving Averages")
     plt.xlabel("Date")
     # show a tick every 5 units
     ax = plt.gca()
@@ -38,7 +38,104 @@ def display_plot(df, stock_name, crossovers):
     plt.grid(True)
     # Adjust layout to prevent overlap
     plt.tight_layout()
+    # Save the figure automatically
+    plt.savefig(f"{directory_name}{stock_name}_market_trend_{end_date}_plot.png", dpi=300, bbox_inches="tight")
     plt.show()
+
+def new_company():
+
+    # Program to take a text string as input from the user
+    prompt="Enter full company name  : "
+    try:
+        # Read input from the user
+        company_name = input(prompt).strip()  # Remove leading/trailing spaces
+        
+        # Validate that the input is not empty
+        if not company_name:
+            print("Error: You must enter a company name.")
+            return None
+        
+    except (EOFError, KeyboardInterrupt):
+        # Handle cases where the user interrupts input
+        print("\nInput cancelled by user.")
+        exit(0)
+        return None
+    
+    # Program to take a text string as input from the user
+    prompt="Enter shortened company name  : "
+    try:
+        # Read input from the user
+        company_short_name = input(prompt).strip().lower()  # Remove leading/trailing spaces
+        
+        # Validate that the input is not empty
+        if not company_short_name:
+            print("Error: You must enter a shortened company name.")
+            return None
+        
+    except (EOFError, KeyboardInterrupt):
+        # Handle cases where the user interrupts input
+        print("\nInput cancelled by user.")
+        exit(0)
+        return None
+    
+    prompt="Enter company code  : "
+    try:
+        # Read input from the user
+        company_code = input(prompt).strip()  # Remove leading/trailing spaces
+        
+        # Validate that the input is not empty
+        if not company_code:
+            print("Error: You must enter a company code.")
+            return None
+        
+    except (EOFError, KeyboardInterrupt):
+        # Handle cases where the user interrupts input
+        print("\nInput cancelled by user.")
+        exit(0)
+        return None
+
+    # Load JSON file
+    with open("config.json", "r") as f:
+        config = json.load(f)
+    
+    # Convert JSON to DataFrame
+    #df = pd.DataFrame(config["stocks"])
+
+    # New company entry
+    new_company = {
+        "company": f"{company_name}",
+        "details": {
+            "name": company_short_name,
+            "code": company_code
+        }
+    }
+    
+    # Insert new company into JSON document
+    config["stocks"].append(new_company)
+
+    # Save back to file (optional)
+    with open("config.json", "w") as f:
+        json.dump(config, f, indent=4)
+
+    # Create a single directory
+    directory_name = f"./{new_company['details']['name']}/"
+    Path(directory_name).mkdir(exist_ok=True)
+
+    new_company = {
+        "stock_name": f"{company_name}",
+        "ticker": f"{company_code}",
+        "start_date": "2026-02-02",
+        "end_date": "2026-04-22"
+    }
+
+    # Save new company config to its own JSON file
+    # Save back to file (optional)
+    with open(f"{directory_name}config.json", "w") as f:
+        json.dump(new_company, f, indent=4)
+
+        
+    print("Updated JSON:")
+    print(json.dumps(config, indent=4))
 
 def get_data(directory_name):
     # Load JSON file
@@ -48,10 +145,11 @@ def get_data(directory_name):
     # Extract values from JSON
     stock_name = config["stock_name"]
     start_date = config["start_date"]
-    end_date = config["end_date"]
-    ticker = config["ticker"]
+    end_date = datetime.today().strftime('%Y-%m-%d')
+    #end_date = config["end_date"]
     #end_date = "2026-01-01"
-
+    ticker = config["ticker"]
+    
     # Download Microsoft stock data
     ticker_val = yf.download(ticker, start=start_date, end=end_date)
 
@@ -94,10 +192,7 @@ def get_data(directory_name):
         # Save to CSV for debugging
         crossovers.to_csv(f"{directory_name}{stock_name}_crossover_data.csv")
 
-        display_plot(df, stock_name, crossovers)
-
-#get_data()
-#exit(0)
+        display_plot(df, stock_name, crossovers, directory_name, end_date)
 
 class SimpleAgent:
     def __init__(self, name="HelperBot"):
@@ -105,30 +200,37 @@ class SimpleAgent:
         # Load JSON file
         with open("config.json", "r") as f:
             config = json.load(f)
+        
+        # Convert JSON to DataFrame
+        df = pd.DataFrame(config["stocks"])
+
+        # Count the number of companies
+        company_count = len(df)
+
+        print("Number of companies:", company_count)
+
         self.name = name
         self.commands = {
-            "tesla": self.get_TSLA,
-            f"{config['stocks'][0]['details']['name']}": self.show_config,
-            f"{config['stocks'][1]['details']['name']}": self.show_config,
-            f"{config['stocks'][2]['details']['name']}": self.show_config,
-            f"{config['stocks'][3]['details']['name']}": self.show_config,
-            f"{config['stocks'][4]['details']['name']}": self.show_config,
-            f"{config['stocks'][5]['details']['name']}": self.show_config,
-            "help": self.show_help,
-            "exit": self.exit_agent
+            
+            f"{config['stocks'][i]['details']['name']}": self.show_config
+            for i in range(company_count)     
         }
-
+        
     def show_config(self):
         """Show the configuration."""
         print(self.my_var)
+        if self.my_var == "help":
+            return self.show_help()
+        elif self.my_var == "exit":
+            return self.exit_agent()
+        elif self.my_var == "new_company":
+            return new_company()
+        elif self.my_var == "reload":
+            return SimpleAgent().run()
+        
         directory_name = f"./{self.my_var}/"
         get_data(directory_name)
- 
-    def get_TSLA(self):
-        """Return Tesla stock information."""
-        directory_name = "./Tesla/"
-        get_data(directory_name)
-    
+         
     def show_help(self):
         """List available commands."""
         return "Available commands: " + ", ".join(self.commands.keys())
